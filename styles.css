@@ -1,0 +1,744 @@
+:root {
+  --cream: #fdf6f0;
+  --blush: #f7e7e1;
+  --gold: #d4af37;
+  --text: #5a4a42;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "MyWeddingFont";
+  src: url("./SHK_Dzeragir.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MyWeddingFontBold";
+  src: url("./SHK_Dzeragir.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "1";
+  src: url("./Runethia.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  font-family: "MyWeddingFont", sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  scroll-behavior: smooth;
+}
+
+.script {
+  font-family: 'Great Vibes', cursive;
+}
+
+/* ========== SMOOTH SCROLL ANIMATIONS ========== */
+/* All elements start hidden and fade in on scroll */
+.hero,
+.invitation,
+.calendar-modern,
+.program-lux,
+.polaroid-section,
+.footer {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Section visible class - add via JavaScript */
+.section-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Individual elements staggered animation */
+.hero-image,
+.hero-text,
+.script,
+.invite-text p,
+.month-title,
+.weekdays,
+.days,
+.program-title,
+.program-item,
+.gallery,
+.polaroid,
+.footer-message,
+.divider {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Stagger delays for invite text paragraphs */
+.invite-text p:nth-child(1) { transition-delay: 0.1s; }
+.invite-text p:nth-child(2) { transition-delay: 0.2s; }
+.invite-text p:nth-child(3) { transition-delay: 0.3s; }
+.invite-text p:nth-child(4) { transition-delay: 0.4s; }
+
+/* Stagger delays for calendar elements */
+.month-title { transition-delay: 0.1s; }
+.weekdays { transition-delay: 0.2s; }
+.days { transition-delay: 0.3s; }
+
+/* Stagger delays for program items */
+.program-item:nth-child(1) { transition-delay: 0.1s; }
+.program-item:nth-child(2) { transition-delay: 0.3s; }
+.program-item:nth-child(3) { transition-delay: 0.5s; }
+
+/* Stagger delays for polaroids */
+.polaroid:nth-child(1) { transition-delay: 0.1s; }
+.polaroid:nth-child(2) { transition-delay: 0.3s; }
+.polaroid:nth-child(3) { transition-delay: 0.5s; }
+
+/* Element visible class */
+.element-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ========== ENHANCED HOVER EFFECTS ========== */
+/* Smooth transitions for all interactive elements */
+.program-item,
+.outline-btn,
+.polaroid,
+.days span,
+.icon img {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced program item hover */
+.program-item:hover {
+  transform: translateY(-10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced button hover */
+.outline-btn {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.outline-btn:hover {
+  background: #e9e1d9;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.outline-btn:active {
+  transform: translateY(0);
+}
+
+/* Enhanced polaroid hover */
+.polaroid {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Calendar day hover effect */
+.days span {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.days span:hover:not(.active) {
+  transform: scale(1.15);
+  color: var(--gold);
+}
+
+.days span.active:hover {
+  transform: scale(1.05);
+}
+
+/* Ring animation enhancement */
+.active .ring {
+  animation: pulseRing 2s infinite;
+  transition: all 0.3s ease;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Diamond sparkle animation */
+.active .diamond {
+  animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* ========== EXISTING STYLES (UNCHANGED) ========== */
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3eee9;
+  padding: 40px 20px;
+}
+
+.hero-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* IMAGE */
+.hero-image {
+  position: relative;
+  width: 320px;
+}
+
+.hero-image img {
+  width: 100%;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+.image-bg {
+  position: absolute;
+  top: 20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  background: #e6ded6;
+  transform: rotate(-5deg);
+  z-index: 1;
+}
+
+/* TEXT */
+.hero-text {
+  text-align: left;
+}
+
+.last-name {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  letter-spacing: 4px;
+  font-weight: 400;
+}
+
+.first-name {
+  font-family: "Playfair Display", serif;
+  font-size: 52px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.ampersand {
+  font-family: "Playfair Display", serif;
+  font-size: 120px;
+  opacity: 0.1;
+  position: absolute;
+  transform: translate(-30px, -40px);
+}
+
+.date {
+  margin-top: 20px;
+  letter-spacing: 6px;
+  font-size: 18px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .ampersand {
+    position: static;
+    display: block;
+    transform: none;
+  }
+}
+
+.invitation {
+  text-align: center;
+  padding: 100px 20px;
+  background: #f3eee9;
+  color: #5a4a42;
+}
+
+/* SCRIPT TITLE */
+.script {
+  font-family: "MyWeddingFontBold", serif;
+  font-style: italic;
+  font-size: 48px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+/* TEXT */
+.invite-text p {
+  max-width: 600px;
+  margin: 10px auto;
+  font-size: 18px;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+/* CALENDAR */
+.calendar-modern {
+  margin-top: 100px;
+}
+
+.month-title {
+  font-family: "MyWeddingFontBold", serif;
+  font-style: italic;
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.line {
+  width: 1px;
+  height: 40px;
+  background: #cfc6be;
+  margin: 20px auto;
+}
+
+/* WEEKDAYS */
+.weekdays {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+/* DAYS */
+.days {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 28px;
+  font-weight: 300;
+}
+
+.days span {
+  position: relative;
+}
+
+/* ACTIVE DATE */
+.active {
+  color: #b89b7a;
+  font-weight: 500;
+}
+
+/* RING EFFECT */
+.active .ring {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #b89b7a;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* DIAMOND ICON */
+.active .diamond {
+  position: absolute;
+  top: -25px;
+  right: -10px;
+  font-size: 16px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .script {
+    font-size: 32px;
+  }
+
+  .days {
+    gap: 19px;
+    font-size: 20px;
+  }
+
+  .weekdays {
+    gap: 14px;
+  }
+  .active .ring {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.program-lux {
+  text-align: center;
+  padding: 120px 20px;
+  background: #f3eee9;
+  color: #5a4a42;
+}
+
+/* TITLE */
+.program-title {
+  font-family: "MyWeddingFontBold", serif;
+  font-style: italic;
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+/* ITEM */
+.program-item {
+  max-width: 500px;
+  margin: 0 auto 100px;
+}
+
+/* ICON WRAPPER */
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+
+/* ICON IMAGE */
+.icon img {
+  width: 75px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.75;
+  filter: grayscale(100%) brightness(0.7);
+  transition: all 0.4s ease;
+}
+
+/* HOVER EFFECT (very subtle) */
+.program-item:hover .icon img {
+  transform: scale(1.08);
+  opacity: 1;
+  filter: grayscale(0%) brightness(1);
+}
+
+/* TEXT */
+.event-name {
+  font-family: "MyWeddingFontBold", serif;
+  font-style: italic;
+  font-size: 36px;
+  margin: 10px 0;
+}
+
+.time {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.location {
+  font-size: 16px;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* BUTTON */
+.outline-btn {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: 1px solid #cfc6be;
+  background: transparent;
+  color: #5a4a42;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.outline-btn:hover {
+  background: #e9e1d9;
+}
+
+/* SPACING BETWEEN BLOCKS */
+.program-item + .program-item {
+  margin-top: 120px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .program-title {
+    font-size: 32px;
+  }
+
+  .event-name {
+    font-size: 28px;
+  }
+}
+
+/* GALLERY */
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+.polaroid {
+  background: white;
+  padding: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transform: rotate(-5deg);
+  transition: 0.3s;
+}
+
+.polaroid:nth-child(2) {
+  transform: rotate(3deg);
+}
+
+.polaroid:nth-child(3) {
+  transform: rotate(-2deg);
+}
+
+.polaroid img {
+  width: 200px;
+  display: block;
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg);
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 40px;
+}
+
+.divider {
+  width: 80%;
+  height: 1px;
+  background: #e0d6cf;
+  margin: 40px auto;
+}
+
+/* ANIMATION */
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MUSIC BUTTON */
+#musicToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border-radius: 50%;
+  padding: 10px;
+  background: white;
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  .program {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.hero-image img {
+  animation: fadeZoom 1.5s ease;
+}
+
+.hero-text {
+  animation: fadeUp 1.5s ease;
+}
+
+@keyframes fadeZoom {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.invite-text, .calendar-modern {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1.5s ease forwards;
+}
+
+.calendar-modern {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.polaroid-section {
+  background: #f3eee9;
+  padding: 120px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* POLAROID FRAME */
+.polaroid {
+  background: white;
+  padding: 15px 15px 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  transform: rotate(-3deg);
+  transition: all 0.4s ease;
+}
+
+/* IMAGE */
+.polaroid img {
+  display: block;
+  width: 280px;
+  height: auto;
+  object-fit: cover;
+}
+
+/* HOVER EFFECT */
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+.polaroid {
+  position: relative;
+}
+
+.polaroid::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -15px;
+  width: 100%;
+  height: 100%;
+  background: #e6ded6;
+  transform: rotate(-6deg);
+  z-index: -1;
+}
+
+.footer p {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer.section-visible p {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 768px) {
+  .scroll-hint .hint-content {
+    font-size: 11px;
+    padding: 8px 16px;
+    white-space: nowrap;
+  }
+  
+  .scroll-hint {
+    bottom: 80px;
+  }
+}
+
+/* Scroll hint styling */
+.scroll-hint {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  animation: slideInUp 0.5s ease-out;
+  transition: opacity 0.5s ease;
+}
+
+.scroll-hint .hint-content {
+  background: rgba(201, 168, 123, 0.95);
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 60px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.scroll-hint.success .hint-content {
+  background: rgba(100, 150, 100, 0.95);
+}
+
+.scroll-hint i {
+  animation: bounce 1s infinite;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
