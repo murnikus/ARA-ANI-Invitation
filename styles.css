@@ -30,6 +30,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "NameFont";
+  src: url("./LaBoutier-ARDOL.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: "MyWeddingFont", sans-serif;
   background: var(--cream);
@@ -206,96 +213,116 @@ body {
 /* ========== EXISTING STYLES (UNCHANGED) ========== */
 /* HERO */
 .hero {
+  position: relative;
   min-height: 100vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f3eee9;
-  padding: 40px 20px;
+
+  overflow: hidden;
+
+  /* DESKTOP BACKGROUND */
+  background-image: url("./IMG_0664.JPEG");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.hero-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 80px;
-  max-width: 1200px;
-  width: 100%;
-}
-
-/* IMAGE */
-.hero-image {
-  position: relative;
-  width: 320px;
-}
-
-.hero-image img {
-  width: 100%;
-  display: block;
-  position: relative;
-  z-index: 2;
-}
-
-.image-bg {
+/* BLUR LAYER */
+.hero::before {
+  content: "";
   position: absolute;
-  top: 20px;
-  left: -20px;
-  width: 100%;
-  height: 100%;
-  background: #e6ded6;
-  transform: rotate(-5deg);
+  inset: 0;
+
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+
+  filter: blur(3px);
+  transform: scale(1.05);
+
+  z-index: 0;
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
   z-index: 1;
 }
 
-/* TEXT */
-.hero-text {
-  text-align: left;
+/* CONTENT */
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+  color: white;
 }
 
+/* TEXT */
 .last-name {
-  font-family: "Playfair Display", serif;
-  font-size: 48px;
-  letter-spacing: 4px;
+  font-family: "NameFont", serif;
+  font-size: 72px;
+  letter-spacing: 8px;
   font-weight: 400;
+  margin: 0;
 }
 
 .first-name {
-  font-family: "Playfair Display", serif;
-  font-size: 52px;
+  font-family: "NameFont", serif;
+  font-size: 78px;
   font-style: italic;
   font-weight: 400;
+  margin: 0;
 }
 
 .ampersand {
   font-family: "Playfair Display", serif;
-  font-size: 120px;
-  opacity: 0.1;
-  position: absolute;
-  transform: translate(-30px, -40px);
+  font-size: 140px;
+  opacity: 0.25;
+  line-height: 1;
 }
 
 .date {
   margin-top: 20px;
-  letter-spacing: 6px;
-  font-size: 18px;
+  letter-spacing: 8px;
+  font-size: 30px;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 @media (max-width: 768px) {
-  .hero-wrapper {
-    flex-direction: column;
-    text-align: center;
-    gap: 40px;
+
+  .hero {
+
+    /* VERTICAL IMAGE */
+    background-image: url("./IMG_0665.JPEG");
+
+    background-position: center;
   }
 
-  .hero-text {
-    text-align: center;
+  .hero::before {
+    background-image: url("./IMG_0665.JPEG");
+  }
+
+  .last-name {
+    font-size: 48px;
+  }
+
+  .first-name {
+    font-size: 54px;
   }
 
   .ampersand {
-    position: static;
-    display: block;
-    transform: none;
+    font-size: 100px;
+  }
+
+  .date {
+    font-size: 23px;
+    letter-spacing: 5px;
   }
 }
 
