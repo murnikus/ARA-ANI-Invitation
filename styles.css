@@ -240,7 +240,7 @@ body {
   background-size: cover;
   background-position: center;
 
-  filter: blur(3px);
+  filter: blur(2px);
   transform: scale(1.05);
 
   z-index: 0;
