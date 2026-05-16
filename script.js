@@ -3,14 +3,18 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Get all elements that need scroll animations
   const sections = document.querySelectorAll('.hero, .invitation, .calendar-modern, .program-lux, .polaroid-section, .footer');
-  const elements = document.querySelectorAll('.hero-image, .hero-text, .script, .invite-text p, .month-title, .weekdays, .days, .program-title, .program-item, .gallery, .polaroid,.footer p, .divider');
+  const elements = document.querySelectorAll('.hero-image, .hero-text, .script, .invite-text p, .month-title, .weekdays, .days, .program-title, .program-item, .gallery, .polaroid, .footer p, .divider');
   
   // Function to check if element is in viewport
-  function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-    return rect.top <= windowHeight - 100 && rect.bottom >= 0;
-  }
+ function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+  return (
+    rect.top <= windowHeight - 50 &&
+    rect.bottom >= -50
+  );
+}
   
   // Function to add visible class to elements in viewport
   function checkScroll() {
@@ -35,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .hero, .invitation, .calendar-modern, .program-lux, .polaroid-section, .footer {
       transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .hero-image, .hero-text, .script, .invite-text p, .month-title, .weekdays, .days, .program-title, .program-item, .gallery, .polaroid, .footer-message, .divider {
+    .hero-image, .hero-text, .script, .invite-text p, .month-title, .weekdays, .days, .program-title, .program-item, .gallery, .polaroid, .footer p, .divider {
       transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
   `;
